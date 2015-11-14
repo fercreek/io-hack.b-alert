@@ -1,7 +1,7 @@
 (function(){
-  var app = angular.module('starter', ['ionic','ionic.service.core', 'ionic.service.analytics','starter.controllers', 'starter.services']);
+  var app = angular.module('starter', ['ionic','ionic.service.core', 'ionic.service.analytics','starter.controllers', 'starter.services', 'ngCordovaBeacon']);
 
-  app.run(function($ionicPlatform, $ionicAnalytics, $timeout) {
+  app.run(function($ionicPlatform, $ionicAnalytics) {
     $ionicPlatform.ready(function() {
 
       $ionicAnalytics.register();
