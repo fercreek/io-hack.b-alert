@@ -85,7 +85,8 @@ angular.module('starter.controllers', ['ngCordovaBeacon'])
       }
 
       if ($scope.accuracy < 0.001 && auth === 0){
-        alert($scope.accuracy);
+        sendData();
+        // alert($scope.accuracy);
         auth++;
       }
 

@@ -37,7 +37,7 @@
       var io = Ionic.io();
       var push = new Ionic.Push({
         "onNotification": function(notification) {
-          // alert('n', notification);
+          alert('Hola Juan, McLaren te ofrece...');
           $state.go('tab.chats');
           // if(notification['$state']) {
           //   //prompt the user to switch

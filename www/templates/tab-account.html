@@ -1,15 +1,45 @@
-<ion-view view-title="Account">
-  <ion-content>
-    <ion-list>
-    <ion-toggle  ng-model="settings.enableFriends">
-        Enable Friends
-    </ion-toggle>
-    </ion-list>
-    <button class="button button-primary button-block " ng-click="checkForUpdates()">
-      Check for updates
-    </button>
-    <button class="button button-stable button-block button-pulse" ng-if="hasUpdate" ng-click="doUpdate()">
-      download update
-    </button>
-  </ion-content>
-</ion-view>
+<ion-view view-title="Descuentos" >
+  <ion-content class="padding">
+    <div class="list card">
+
+      <div class="item item-body" >
+
+<div class="list">
+
+    <a class="item item-thumbnail-left" href="#">
+      <img src="img/logomclaren.jpg">
+      <h2>80% de Decuento</h2>
+      <p>Participantes de I/O HACK</p>
+    </a>
+
+    <a class="item item-thumbnail-left" href="#">
+      <img src="img/logoaero.jpg">
+      <h2>Aeroméxoco</h2>
+      <p>2x1 en Vuelos</p>
+    </a>
+
+    <a class="item item-thumbnail-left" href="#">
+      <img src="img/cityexpress.png">
+      <h2>City Express</h2>
+      <p>Perfecto para tus vacaciones</p>
+    </a>
+
+    <a class="item item-thumbnail-left" href="#">
+      <img src="img/logoapple.png">
+      <h2>Increibles descuentos de Apple</h2>
+      <p>En distintos productos</p>
+    </a>
+
+    <a class="item item-thumbnail-left" href="#">
+      <img src="img/telcellogo.jpg">
+      <h2>Telcel</h2>
+      <p>En todos los modelo samsung</p>
+    </a>
+
+
+</div>
+    </div>
+  </div>
+
+    </ion-content>
+  </ion-view>
