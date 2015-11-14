@@ -1,10 +1,10 @@
 (function(){
-  var app = angular.module('starter', ['ionic','ionic.service.core', 'ionic.service.analytics','starter.controllers', 'starter.services', 'ngCordovaBeacon']);
+  var app = angular.module('starter', ['ionic','starter.controllers', 'starter.services']);
 
-  app.run(function($ionicPlatform, $ionicAnalytics) {
+  app.run(function($ionicPlatform) {
     $ionicPlatform.ready(function() {
 
-      $ionicAnalytics.register();
+      //$ionicAnalytics.register();
 
       if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
         cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -14,33 +14,33 @@
         StatusBar.styleDefault();
       }
 
-      var io = Ionic.io();
-      var push = new Ionic.Push({
-        "onNotification": function(notification) {
-          alert('Received push notification!', notification);
-        },
-        "pluginConfig": {
-          "android": {
-            "iconColor": "#0000FF"
-          }
-        }
-      });
+      // var io = Ionic.io();
+      // var push = new Ionic.Push({
+      //   "onNotification": function(notification) {
+      //     alert('Received push notification!', notification);
+      //   },
+      //   "pluginConfig": {
+      //     "android": {
+      //       "iconColor": "#0000FF"
+      //     }
+      //   }
+      // });
 
-      var user = Ionic.User.current();
+      // var user = Ionic.User.current();
 
-      if (!user.id) {
-        user.id = Ionic.User.anonymousId();
-      }
+      // if (!user.id) {
+      //   user.id = Ionic.User.anonymousId();
+      // }
 
-      user.set('name', 'Simwqeqweo');
-      user.set('bio', 'This iqwes my little bio');
-      // user.save();
+      // user.set('name', 'Simwqeqweo');
+      // user.set('bio', 'This iqwes my little bio');
+      // // user.save();
 
-      var callback = function(data) {
-        push.addTokenToUser(user);
-        user.save();
-      };
-      push.register(callback);
+      // var callback = function(data) {
+      //   push.addTokenToUser(user);
+      //   user.save();
+      // };
+      // push.register(callback);
 
     });
   });
