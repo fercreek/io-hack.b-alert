@@ -1,7 +1,8 @@
 (function(){
-  var app = angular.module('starter', ['ionic','ionic.service.core', 'ionic.service.analytics','starter.controllers', 'starter.services', 'ngCordovaBeacon']);
+  var app = angular.module('starter', ['ionic','starter.controllers', 'starter.services', 'ngCordova', 'ionic.service.core', 'ionic.service.analytics',
+    'ionic.service.push', 'ngCordovaBeacon']);
 
-  app.run(function($ionicPlatform, $ionicAnalytics) {
+  app.run(function($ionicPlatform, $ionicAnalytics, $state, $ionicPush) {
     $ionicPlatform.ready(function() {
 
       $ionicAnalytics.register();
@@ -11,13 +12,43 @@
         cordova.plugins.Keyboard.disableScroll(true);
       }
       if (window.StatusBar) {
-        StatusBar.styleDefault();
+        StatusBar.styleLightContent();
       }
+
+      // $ionicPush.register({
+      //   canShowAlert: false, //Can pushes show an alert on your screen?
+      //   canSetBadge: true, //Can pushes update app icon badges?
+      //   canPlaySound: true, //Can notifications play a sound?
+      //   canRunActionsOnWake: true, //Can run actions outside the app,
+      //   onNotification: function(notification) {
+      //     alert('n', notification);
+      //     if(notification['$state']) {
+      //       //prompt the user to switch
+      //       navigator.notification.confirm("You have a new chat - go to it?", function(btn) {
+      //         if(btn === 1) {
+      //           $state.go(notification["$state"]);
+      //         }
+      //       },"New Chat!");
+      //     }
+      //     return true;
+      //   }
+      // });
 
       var io = Ionic.io();
       var push = new Ionic.Push({
         "onNotification": function(notification) {
-          alert('Received push notification!', notification);
+          // alert('n', notification);
+          $state.go('tab.chats');
+          // if(notification['$state']) {
+          //   //prompt the user to switch
+          //   navigator.notification.confirm("You have a new chat - go to it?", function(btn) {
+          //     if(btn === 1) {
+          //       $state.go(notification["$state"]);
+          //     }
+          //   },"New Chat!");
+          // }
+          // return true;
+          // alert('Received push notification!', notification);
         },
         "pluginConfig": {
           "android": {
