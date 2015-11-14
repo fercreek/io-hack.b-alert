@@ -1,43 +1,46 @@
 (function(){
   var app = angular.module('starter', ['ionic','ionic.service.core', 'ionic.service.analytics','starter.controllers', 'starter.services']);
 
-  app.run(function($ionicPlatform, $ionicAnalytics) {
+  app.run(function($ionicPlatform, $ionicAnalytics, $timeout) {
     $ionicPlatform.ready(function() {
 
       $ionicAnalytics.register();
-      
+
       if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
         cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
         cordova.plugins.Keyboard.disableScroll(true);
-
       }
       if (window.StatusBar) {
         StatusBar.styleDefault();
       }
 
+      var io = Ionic.io();
       var push = new Ionic.Push({
-        "debug": true
+        "onNotification": function(notification) {
+          alert('Received push notification!', notification);
+        },
+        "pluginConfig": {
+          "android": {
+            "iconColor": "#0000FF"
+          }
+        }
       });
 
-      push.register(function(token) {
-        console.log("Device token:",token.token);
-      });
-
-      Ionic.io();
-
-      // this will give you a fresh user or the previously saved 'current user'
       var user = Ionic.User.current();
 
-      // if the user doesn't have an id, you'll need to give it one.
       if (!user.id) {
         user.id = Ionic.User.anonymousId();
-        // user.id = 'your-custom-user-id';
-        console.log('!user',user.id );
       }
-      console.log('userr',user.id );
 
-      //persist the user
-      user.save();
+      user.set('name', 'Simwqeqweo');
+      user.set('bio', 'This iqwes my little bio');
+      // user.save();
+
+      var callback = function(data) {
+        push.addTokenToUser(user);
+        user.save();
+      };
+      push.register(callback);
 
     });
   });
